@@ -1,29 +1,23 @@
-import { ClerkProvider } from '@clerk/nextjs';
-import { GeistSans } from 'geist/font/sans';
-import type { Metadata } from 'next';
-
 import './globals.css';
+import { Inter } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
-export const metadata: Metadata = {
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata = {
   title: 'Wrapped Tracker',
-  description: 'Suivez et visualisez vos données personnelles de manière engageante',
-  icons: {
-    icon: '/favicon.ico',
-  },
+  description: 'Suivez vos statistiques Spotify en temps réel',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
-      <html lang="fr" suppressHydrationWarning>
-        <body className={GeistSans.className}>
-          <main className="min-h-screen bg-background">{children}</main>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="fr" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ClerkProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
