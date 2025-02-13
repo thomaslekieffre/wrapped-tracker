@@ -2,7 +2,8 @@
 
 ## Task Objective
 
-Mettre en place la structure initiale du projet et configurer l'environnement de développement selon les standards définis.
+Mettre en place la structure initiale du projet et configurer l'environnement de développement selon
+les standards définis.
 
 ## Current State Assessment
 

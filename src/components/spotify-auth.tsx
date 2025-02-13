@@ -67,10 +67,8 @@ export function SpotifyAuth() {
           </Button>
         </div>
       ) : (
-        <Button onClick={handleConnect}>
-          Se connecter avec Spotify
-        </Button>
+        <Button onClick={handleConnect}>Se connecter avec Spotify</Button>
       )}
     </div>
   );
-} 
+}

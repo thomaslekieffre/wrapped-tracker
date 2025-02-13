@@ -2,7 +2,8 @@
 
 ## Task Objective
 
-Mettre en place l'intégration Spotify avec authentification et récupération des données de base (top tracks, artistes, genres).
+Mettre en place l'intégration Spotify avec authentification et récupération des données de base (top
+tracks, artistes, genres).
 
 ## Current State Assessment
 

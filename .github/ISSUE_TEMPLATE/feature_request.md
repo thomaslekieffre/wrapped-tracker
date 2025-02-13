@@ -1,9 +1,9 @@
 ---
 name: 🚀 Demande de Fonctionnalité
 about: Suggérer une idée pour ce projet
-title: "feat: "
-labels: "enhancement"
-assignees: ""
+title: 'feat: '
+labels: 'enhancement'
+assignees: ''
 ---
 
 ## 📝 Description

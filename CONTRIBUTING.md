@@ -1,6 +1,7 @@
 # Guide de Contribution
 
-Merci de votre intérêt pour contribuer à Wrapped Tracker ! Ce guide vous aidera à comprendre notre processus de développement et nos standards.
+Merci de votre intérêt pour contribuer à Wrapped Tracker ! Ce guide vous aidera à comprendre notre
+processus de développement et nos standards.
 
 ## 🌟 Principes de Base
 

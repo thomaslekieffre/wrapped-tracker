@@ -12,11 +12,11 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const period = searchParams.get('period') || 'month';
-    
+
     const artists = await getTopArtists(period);
     return NextResponse.json(artists);
   } catch (error) {
     console.error('Erreur lors de la récupération des top artists:', error);
     return new NextResponse('Erreur serveur', { status: 500 });
   }
-} 
+}

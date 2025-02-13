@@ -34,4 +34,4 @@ export const useStore = create<AppState>()(
       partialize: (state) => ({ preferences: state.preferences }),
     }
   )
-); 
+);

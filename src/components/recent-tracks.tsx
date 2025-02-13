@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { SpotifyTrack } from '@/types/spotify';
+import Image from 'next/image';
 
 interface RecentTrack {
   track: SpotifyTrack;
@@ -52,13 +53,15 @@ export function RecentTracks() {
           key={`${item.track.id}-${item.playedAt}`}
           className="group flex items-center gap-3 rounded-lg bg-background/50 p-2 transition-all hover:bg-accent/50"
         >
-          {item.track.album?.images?.[0] && (
-            <img
-              src={item.track.album.images[0].url}
-              alt={item.track.album.name}
-              className="h-10 w-10 rounded-md object-cover"
+          <div className="flex items-center gap-4">
+            <Image
+              src={item.track.album?.images?.[0]?.url || ''}
+              alt={item.track.album?.name || ''}
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-md object-cover"
             />
-          )}
+          </div>
           <div className="min-w-0 flex-1">
             <p className="truncate font-medium group-hover:text-primary">{item.track.name}</p>
             <p className="truncate text-xs text-muted-foreground">

@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error('Erreur lors de l\'échange du code');
+      throw new Error("Erreur lors de l'échange du code");
     }
 
     const data = await response.json();
@@ -66,18 +66,15 @@ export async function GET(request: NextRequest) {
     const profile = await profileResponse.json();
 
     // Mettre à jour l'utilisateur dans Supabase
-    await supabase
-      .from('users')
-      .update({ spotify_id: profile.id })
-      .eq('clerk_id', userId);
+    await supabase.from('users').update({ spotify_id: profile.id }).eq('clerk_id', userId);
 
     // Rediriger vers le tableau de bord avec un message de succès
     const redirectUrl = new URL('/dashboard', process.env.NEXT_PUBLIC_APP_URL);
     redirectUrl.searchParams.append('refresh_token', refresh_token);
-    
+
     return NextResponse.redirect(redirectUrl.toString());
   } catch (error) {
-    console.error('Erreur d\'authentification Spotify:', error);
-    return new NextResponse('Erreur d\'authentification', { status: 500 });
+    console.error("Erreur d'authentification Spotify:", error);
+    return new NextResponse("Erreur d'authentification", { status: 500 });
   }
-} 
+}
