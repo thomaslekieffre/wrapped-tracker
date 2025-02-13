@@ -4,6 +4,9 @@ import { WavyBackground, AnimatedCard, AnimatedLogo, CTAButton } from '@/compone
 import { motion } from 'framer-motion';
 import { Headphones, LineChart, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { useAuth } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const features = [
   {
@@ -42,6 +45,15 @@ const item = {
 };
 
 export default function HomePage() {
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push('/dashboard');
+    }
+  }, [isSignedIn, router]);
+
   return (
     <WavyBackground className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-4">
       {/* Cercles décoratifs en arrière-plan */}
@@ -96,7 +108,7 @@ export default function HomePage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <Link href="/sign-in">
+          <Link href={isSignedIn ? '/dashboard' : '/sign-in'}>
             <CTAButton size="lg" className="text-lg">
               Commencer Maintenant
             </CTAButton>
