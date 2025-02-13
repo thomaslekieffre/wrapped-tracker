@@ -1,87 +1,86 @@
 # Wrapped Tracker - Contexte du Projet
 
-## 🎯 Objectif du Projet
+## Objectif
 
-Application de suivi personnalisé inspirée par Spotify Wrapped, permettant aux utilisateurs de suivre et visualiser leurs données personnelles de manière engageante et interactive.
+Application de suivi des statistiques Spotify en temps réel, permettant aux utilisateurs de suivre leur évolution musicale et de découvrir des insights sur leurs habitudes d'écoute.
 
-## 🏗 Architecture Technique
+## Stack Technique
 
-### Stack Frontend
-
-- **Framework** : Next.js 15+ avec App Router
-- **Language** : TypeScript
-- **UI/UX** :
-  - ShadCN UI pour les composants
-  - TailwindCSS pour le styling
-  - Approche mobile-first & responsive
-- **État** : Zustand pour la gestion d'état côté client
-- **PWA** : Capacités hors-ligne & installation
-
-### Stack Backend
-
+- **Frontend** : Next.js 15+, React Server Components, TypeScript
+- **UI** : TailwindCSS, ShadcnUI
+- **État** : Zustand
+- **Auth** : Clerk
+- **API** : Spotify Web API
 - **Base de données** : Supabase
-- **Authentification** : Clerk
-- **Sécurité** : Row Level Security (RLS)
 
-### Outils & Configuration
+## Architecture
 
-- **Package Manager** : pnpm
-- **Monorepo Structure** :
-  - `/packages` : Code partagé
-  - `/app` : Code spécifique
-- **Documentation** :
-  - `/ProjectDocs/Build_Notes/` : Notes de build
-  - `/ProjectDocs/contexts/` : Fichiers de contexte
+- Structure Monorepo
+- Approche mobile-first
+- Composants serveur par défaut
+- PWA avec capacités hors-ligne
 
-## 📋 Principes de Développement
+## Fonctionnalités Principales
 
-### Code Quality
+1. **Authentification**
 
-- TypeScript strict mode
-- Approche fonctionnelle et déclarative
-- Limite de 150 lignes par fichier
-- Convention RORO (Receive Object, Return Object)
-- DRY (Don't Repeat Yourself)
+   - Connexion via Clerk
+   - Intégration Spotify
 
-### Performance
+2. **Dashboard**
 
-- Optimisation des Web Vitals (LCP, CLS, FID)
-- Server-Side Rendering (SSR)
-- React Server Components (RSC)
-- Minimisation du JavaScript côté client
+   - Vue d'ensemble des statistiques
+   - Activité récente
+   - Top artistes et morceaux
 
-### Sécurité
+3. **Statistiques**
 
-- Authentification robuste via Clerk
-- Protection des routes et API
-- Validation des données
-- Gestion sécurisée des variables d'environnement
+   - Historique d'écoute
+   - Analyses temporelles
+   - Genres préférés
 
-## 🔄 Workflow de Développement
+4. **Objectifs** (À implémenter)
+   - Suivi personnalisé
+   - Système de badges
+   - Recommandations
 
-### Branches
+## Conventions de Code
 
-- `main` : Production stable
-- `dev` : Développement principal
-- `feature/*` : Nouvelles fonctionnalités
-- `hotfix/*` : Corrections urgentes
+- TypeScript strict
+- Approche fonctionnelle
+- Composants atomiques
+- Tests unitaires
+- Documentation exhaustive
 
-### Commits
+## Sécurité
 
-- Fréquence : 30-60 minutes
-- Format : `type: description concise`
-- Types : `feat`, `fix`, `refactor`, `chore`, `test`, `docs`, `style`
+- Authentification sécurisée
+- Protection des données utilisateur
+- Gestion des tokens Spotify
+- Row Level Security avec Supabase
 
-## 📈 Métriques de Succès
+## Performance
 
-- Performance technique (Web Vitals)
-- Engagement utilisateur
-- Fiabilité et stabilité
-- Satisfaction utilisateur
+- Optimisation des Web Vitals
+- Mise en cache intelligente
+- Lazy loading des composants
+- Optimisation des images
 
-## 🔄 Cycle de Mise à Jour
+## Roadmap
 
-- Revues de code régulières
-- Sessions de refactoring planifiées
-- Mises à jour de dépendances
-- Tests de régression
+1. Phase 1 : MVP ✅
+
+   - Auth
+   - Dashboard basique
+   - Statistiques simples
+
+2. Phase 2 : En cours
+
+   - Statistiques avancées
+   - Système d'objectifs
+   - Personnalisation
+
+3. Phase 3 : Planifié
+   - Fonctionnalités sociales
+   - Mode hors-ligne
+   - PWA complète
