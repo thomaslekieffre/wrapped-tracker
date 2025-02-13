@@ -44,9 +44,14 @@ export function AccentSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Changer la couleur d'accent"
+          data-testid="accent-switcher"
+        >
           <Palette className="h-5 w-5" />
-          <span className="sr-only">Changer la couleur d'accent</span>
+          <span className="sr-only">Changer la couleur d&apos;accent</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -55,6 +60,8 @@ export function AccentSwitcher() {
             key={value}
             onClick={() => setAccentColor(value)}
             className="flex items-center gap-2"
+            role="menuitem"
+            data-testid={`accent-color-${value.toLowerCase()}`}
           >
             <div className="h-4 w-4 rounded-full" style={{ backgroundColor: color }} />
             {label}
