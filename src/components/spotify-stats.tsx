@@ -83,27 +83,24 @@ export function SpotifyStats() {
       try {
         setStats((prev) => ({ ...prev, isLoading: true, error: null }));
 
-        // Récupérer toutes les données en parallèle
-        const [tracksRes, artistsRes, playCountsRes, evolutionRes] = await Promise.all([
-          fetch(`/api/spotify/top-tracks?period=${timeRange}`),
-          fetch(`/api/spotify/top-artists?period=${timeRange}`),
-          fetch(`/api/spotify/track-play-counts?period=${timeRange}`),
-          fetch(`/api/spotify/evolution?period=${timeRange}`),
-        ]);
+        // Récupérer les données en série pour éviter les problèmes de concurrence
+        const tracksRes = await fetch(`/api/spotify/top-tracks?period=${timeRange}`);
+        if (!tracksRes.ok) {
+          throw new Error(`Erreur tracks: ${tracksRes.statusText}`);
+        }
+        const tracks = await tracksRes.json();
 
-        // Vérifier les réponses
-        if (!tracksRes.ok) throw new Error(`Erreur tracks: ${tracksRes.statusText}`);
-        if (!artistsRes.ok) throw new Error(`Erreur artists: ${artistsRes.statusText}`);
-        if (!playCountsRes.ok) throw new Error(`Erreur play counts: ${playCountsRes.statusText}`);
-        if (!evolutionRes.ok) throw new Error(`Erreur evolution: ${evolutionRes.statusText}`);
+        const artistsRes = await fetch(`/api/spotify/top-artists?period=${timeRange}`);
+        if (!artistsRes.ok) {
+          throw new Error(`Erreur artists: ${artistsRes.statusText}`);
+        }
+        const artists = await artistsRes.json();
 
-        // Récupérer les données
-        const [tracks, artists, playCounts, evolution] = await Promise.all([
-          tracksRes.json(),
-          artistsRes.json(),
-          playCountsRes.json(),
-          evolutionRes.json(),
-        ]);
+        const playCountsRes = await fetch(`/api/spotify/track-play-counts?period=${timeRange}`);
+        if (!playCountsRes.ok) {
+          throw new Error(`Erreur play counts: ${playCountsRes.statusText}`);
+        }
+        const playCounts = await playCountsRes.json();
 
         // Fusionner les tracks avec leurs nombres d'écoutes
         const tracksWithPlayCounts = tracks.map((track: SpotifyTrack) => ({
@@ -111,7 +108,10 @@ export function SpotifyStats() {
           playCount: playCounts[track.id] || 0,
         }));
 
+        // Générer les données d'évolution (à remplacer par de vraies données d'API)
+        const evolution = generateEvolutionData(timeRange);
         setEvolutionData(evolution);
+
         setStats({
           topTracks: tracksWithPlayCounts,
           topArtists: artists,
@@ -305,4 +305,22 @@ export function SpotifyStats() {
       )}
     </div>
   );
+}
+
+// Fonction temporaire pour générer des données d'évolution (à remplacer par l'API)
+function generateEvolutionData(timeRange: TimeRangeValue) {
+  const data: Array<{ date: string; value: number }> = [];
+  const now = new Date();
+  const points = timeRange === 'month' ? 30 : timeRange === 'semester' ? 180 : 365;
+
+  for (let i = points - 1; i >= 0; i--) {
+    const date = new Date(now);
+    date.setDate(date.getDate() - i);
+    data.push({
+      date: date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }),
+      value: Math.floor(Math.random() * 100) + 50, // Valeur aléatoire entre 50 et 150
+    });
+  }
+
+  return data;
 }
