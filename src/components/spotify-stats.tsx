@@ -194,7 +194,7 @@ export function SpotifyStats() {
               <Music className="h-5 w-5 text-primary" />
               <h3 className="text-lg font-semibold">Top 10 Morceaux</h3>
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="space-y-2">
               {stats.topTracks.slice(0, 10).map((track, index) => (
                 <div
                   key={`${track.id}-${index}`}
@@ -203,13 +203,13 @@ export function SpotifyStats() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center font-bold text-muted-foreground">
                     {index + 1}
                   </div>
-                  <div key={track.id} className="group relative">
+                  <div className="h-12 w-12 shrink-0">
                     <Image
                       src={track.album?.images?.[0]?.url || '/placeholder.png'}
                       alt={track.name}
-                      width={160}
-                      height={160}
-                      className="aspect-square w-full rounded-xl object-cover transition-all group-hover:shadow-xl"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 rounded-md object-cover transition-all group-hover:shadow-xl"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -233,7 +233,7 @@ export function SpotifyStats() {
               <Users className="h-5 w-5 text-primary" />
               <h3 className="text-lg font-semibold">Top 10 Artistes</h3>
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2">
               {stats.topArtists.slice(0, 10).map((artist, index) => (
                 <div
                   key={`${artist.id}-${index}`}
@@ -242,19 +242,19 @@ export function SpotifyStats() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center font-bold text-muted-foreground">
                     {index + 1}
                   </div>
-                  <div key={artist.id} className="group relative">
+                  <div className="h-12 w-12 shrink-0">
                     <Image
                       src={artist.images?.[0]?.url || '/placeholder.png'}
                       alt={artist.name}
-                      width={160}
-                      height={160}
-                      className="aspect-square w-full rounded-xl object-cover transition-all group-hover:shadow-xl"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 rounded-md object-cover transition-all group-hover:shadow-xl"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium group-hover:text-primary">{artist.name}</p>
                     <div className="flex flex-wrap gap-1">
-                      {artist.genres?.slice(0, 3).map((genre) => (
+                      {artist.genres?.slice(0, 2).map((genre) => (
                         <span
                           key={genre}
                           className="inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[10px] text-primary"
@@ -276,7 +276,7 @@ export function SpotifyStats() {
               <Radio className="h-5 w-5 text-primary" />
               <h3 className="text-lg font-semibold">Vos Genres Préférés</h3>
             </div>
-            <div className="grid gap-3 md:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {Array.from(
                 stats.topArtists.reduce((genres, artist) => {
                   artist.genres?.forEach((genre) => {
@@ -295,11 +295,11 @@ export function SpotifyStats() {
                       className="group flex items-center gap-3 rounded-lg bg-background/50 p-3 transition-all hover:bg-accent/50"
                     >
                       <GenreIcon className="h-4 w-4 shrink-0 text-primary" />
-                      <div className="flex flex-1 items-center justify-between">
-                        <span className="font-medium capitalize">{genre}</span>
-                        <span className="text-sm text-muted-foreground">
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate font-medium capitalize">{genre}</p>
+                        <p className="text-sm text-muted-foreground">
                           {count} artiste{count > 1 ? 's' : ''}
-                        </span>
+                        </p>
                       </div>
                     </div>
                   );

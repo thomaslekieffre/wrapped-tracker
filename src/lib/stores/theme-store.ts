@@ -15,7 +15,7 @@ export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
       theme: 'system',
-      accentColor: 'violet',
+      accentColor: 'spotify',
       setTheme: (theme) => set({ theme }),
       setAccentColor: (color) => set({ accentColor: color }),
     }),
