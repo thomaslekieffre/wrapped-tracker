@@ -10,7 +10,7 @@ export async function GET() {
   }
 
   try {
-    const recentlyPlayed = await getRecentlyPlayed(10); // Récupérer les 10 derniers morceaux
+    const recentlyPlayed = await getRecentlyPlayed();
     return NextResponse.json(recentlyPlayed);
   } catch (error) {
     console.error("Erreur lors de la récupération de l'historique:", error);
