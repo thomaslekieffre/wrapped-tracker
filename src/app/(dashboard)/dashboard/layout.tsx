@@ -3,6 +3,7 @@ import { LayoutDashboard, LineChart, Settings, Target } from 'lucide-react';
 import Link from 'next/link';
 import { Footer } from '@/components/footer';
 import { Logo } from '@/components/logo';
+import { ThemeCustomizer } from '@/components/theme/theme-customizer';
 
 const navigation = [
   { name: 'Tableau de bord', href: '/dashboard', icon: LayoutDashboard },
@@ -38,9 +39,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             ))}
           </nav>
 
-          {/* User */}
+          {/* User & Theme */}
           <div className="border-t p-4">
-            <UserButton afterSignOutUrl="/" />
+            <div className="flex items-center justify-between">
+              <UserButton afterSignOutUrl="/" />
+              <ThemeCustomizer />
+            </div>
           </div>
         </div>
       </aside>
