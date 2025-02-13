@@ -44,7 +44,7 @@ export async function getRecentlyPlayed(): Promise<{ track: SpotifyTrack; played
     throw new Error('Failed to fetch recently played tracks');
   }
 
-  const data = await response.json() as SpotifyRecentlyPlayedResponse;
+  const data = (await response.json()) as SpotifyRecentlyPlayedResponse;
   return data.items.map((item) => ({
     track: item.track,
     playedAt: item.played_at,
@@ -54,7 +54,7 @@ export async function getRecentlyPlayed(): Promise<{ track: SpotifyTrack; played
 // Récupérer les top tracks avec la période spécifiée
 export async function getTopTracks(period: string = 'month'): Promise<SpotifyTrack[]> {
   let timeRange: keyof SpotifyTimeRange;
-  
+
   switch (period) {
     case 'month':
       timeRange = 'short_term'; // 4 semaines
@@ -81,9 +81,11 @@ interface SpotifyTrackWithPopularity extends SpotifyTrack {
 }
 
 // Récupérer le nombre d'écoutes pour une période donnée
-export async function getTrackPlayCounts(period: string = 'month'): Promise<Record<string, number>> {
+export async function getTrackPlayCounts(
+  period: string = 'month'
+): Promise<Record<string, number>> {
   let timeRange: keyof SpotifyTimeRange;
-  
+
   switch (period) {
     case 'month':
       timeRange = 'short_term';
@@ -111,7 +113,7 @@ export async function getTrackPlayCounts(period: string = 'month'): Promise<Reco
 
     const data = await response.json();
     const result: Record<string, number> = {};
-    
+
     // Utiliser la popularité comme statistique
     data.items.forEach((track: SpotifyTrackWithPopularity) => {
       result[track.id] = track.popularity; // Popularité de 0 à 100
@@ -127,7 +129,7 @@ export async function getTrackPlayCounts(period: string = 'month'): Promise<Reco
 // Récupérer les top artistes avec la période spécifiée
 export async function getTopArtists(period: string = 'month'): Promise<SpotifyArtist[]> {
   let timeRange: keyof SpotifyTimeRange;
-  
+
   switch (period) {
     case 'month':
       timeRange = 'short_term'; // 4 semaines
@@ -160,4 +162,4 @@ export async function getCurrentlyPlaying(): Promise<SpotifyTrack | null> {
   }
 }
 
-export { TIME_RANGES }; 
+export { TIME_RANGES };

@@ -2,7 +2,8 @@
 
 ## Objectif
 
-Application de suivi des statistiques Spotify en temps réel, permettant aux utilisateurs de suivre leur évolution musicale et de découvrir des insights sur leurs habitudes d'écoute.
+Application de suivi des statistiques Spotify en temps réel, permettant aux utilisateurs de suivre
+leur évolution musicale et de découvrir des insights sur leurs habitudes d'écoute.
 
 ## Stack Technique
 

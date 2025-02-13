@@ -16,6 +16,8 @@ import {
   Mic,
   LucideIcon,
 } from 'lucide-react';
+import { EvolutionChart } from './stats/evolution-chart';
+import Image from 'next/image';
 
 interface Stats {
   topTracks: Array<SpotifyTrack & { playCount?: number }>;
@@ -75,6 +77,7 @@ export function SpotifyStats() {
     isLoading: true,
     error: null,
   });
+  const [evolutionData, setEvolutionData] = useState<Array<{ date: string; value: number }>>([]);
 
   useEffect(() => {
     async function fetchStats() {
@@ -105,6 +108,10 @@ export function SpotifyStats() {
           ...track,
           playCount: playCounts[track.id] || 0,
         }));
+
+        // Générer les données d'évolution (à remplacer par de vraies données d'API)
+        const evolution = generateEvolutionData(timeRange);
+        setEvolutionData(evolution);
 
         setStats({
           topTracks: tracksWithPlayCounts,
@@ -171,6 +178,16 @@ export function SpotifyStats() {
         </div>
       ) : (
         <div className="divide-y divide-border">
+          {/* Graphique d'évolution */}
+          <div className="p-6">
+            <EvolutionChart
+              title="Évolution des écoutes"
+              data={evolutionData}
+              isLoading={stats.isLoading}
+              valueLabel="Écoutes"
+            />
+          </div>
+
           {/* Top Tracks */}
           <div className="p-6">
             <div className="mb-4 flex items-center gap-2">
@@ -186,13 +203,15 @@ export function SpotifyStats() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center font-bold text-muted-foreground">
                     {index + 1}
                   </div>
-                  {track.album?.images?.[0] && (
-                    <img
-                      src={track.album.images[0].url}
-                      alt={track.album.name}
-                      className="h-10 w-10 rounded-md object-cover"
+                  <div key={track.id} className="group relative">
+                    <Image
+                      src={track.album?.images?.[0]?.url || '/placeholder.png'}
+                      alt={track.name}
+                      width={160}
+                      height={160}
+                      className="aspect-square w-full rounded-xl object-cover transition-all group-hover:shadow-xl"
                     />
-                  )}
+                  </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium group-hover:text-primary">{track.name}</p>
                     <p className="truncate text-xs text-muted-foreground">
@@ -223,13 +242,15 @@ export function SpotifyStats() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center font-bold text-muted-foreground">
                     {index + 1}
                   </div>
-                  {artist.images?.[0] && (
-                    <img
-                      src={artist.images[0].url}
+                  <div key={artist.id} className="group relative">
+                    <Image
+                      src={artist.images?.[0]?.url || '/placeholder.png'}
                       alt={artist.name}
-                      className="h-10 w-10 rounded-full object-cover"
+                      width={160}
+                      height={160}
+                      className="aspect-square w-full rounded-xl object-cover transition-all group-hover:shadow-xl"
                     />
-                  )}
+                  </div>
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium group-hover:text-primary">{artist.name}</p>
                     <div className="flex flex-wrap gap-1">
@@ -289,4 +310,22 @@ export function SpotifyStats() {
       )}
     </div>
   );
+}
+
+// Fonction temporaire pour générer des données d'évolution (à remplacer par l'API)
+function generateEvolutionData(timeRange: TimeRangeValue) {
+  const data: Array<{ date: string; value: number }> = [];
+  const now = new Date();
+  const points = timeRange === 'month' ? 30 : timeRange === 'semester' ? 180 : 365;
+
+  for (let i = points - 1; i >= 0; i--) {
+    const date = new Date(now);
+    date.setDate(date.getDate() - i);
+    data.push({
+      date: date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }),
+      value: Math.floor(Math.random() * 100) + 50, // Valeur aléatoire entre 50 et 150
+    });
+  }
+
+  return data;
 }

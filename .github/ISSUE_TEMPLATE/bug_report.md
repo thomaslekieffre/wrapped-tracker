@@ -1,9 +1,9 @@
 ---
 name: 🐛 Rapport de Bug
 about: Créer un rapport pour nous aider à améliorer
-title: "fix: "
-labels: "bug"
-assignees: ""
+title: 'fix: '
+labels: 'bug'
+assignees: ''
 ---
 
 ## 📝 Description du Bug

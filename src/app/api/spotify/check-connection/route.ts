@@ -17,4 +17,4 @@ export async function GET() {
     console.error('Erreur lors de la vérification de la connexion Spotify:', error);
     return NextResponse.json({ isConnected: false });
   }
-} 
+}

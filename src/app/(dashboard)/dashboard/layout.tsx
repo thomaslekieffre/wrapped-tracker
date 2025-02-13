@@ -1,5 +1,5 @@
 import { UserButton } from '@clerk/nextjs';
-import { LayoutDashboard, LineChart, Settings, Target } from 'lucide-react';
+import { LayoutDashboard, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { Footer } from '@/components/footer';
 import { Logo } from '@/components/logo';
@@ -7,8 +7,6 @@ import { ThemeCustomizer } from '@/components/theme/theme-customizer';
 
 const navigation = [
   { name: 'Tableau de bord', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Statistiques', href: '/dashboard/stats', icon: LineChart },
-  { name: 'Objectifs', href: '/dashboard/goals', icon: Target },
   { name: 'Paramètres', href: '/dashboard/settings', icon: Settings },
 ];
 

@@ -49,4 +49,4 @@ export interface UserTopItems {
 export interface ListeningHistory {
   userId: string;
   history: UserTopItems[];
-} 
+}

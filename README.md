@@ -1,6 +1,7 @@
 # 📊 Wrapped Tracker
 
-Application de suivi personnalisé inspirée par Spotify Wrapped, permettant aux utilisateurs de suivre et visualiser leurs données personnelles de manière engageante et interactive.
+Application de suivi personnalisé inspirée par Spotify Wrapped, permettant aux utilisateurs de
+suivre et visualiser leurs données personnelles de manière engageante et interactive.
 
 ## 🚀 Fonctionnalités
 
@@ -47,7 +48,8 @@ La documentation complète est disponible dans le dossier `/ProjectDocs` :
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! Consultez notre [guide de contribution](CONTRIBUTING.md) pour plus d'informations.
+Les contributions sont les bienvenues ! Consultez notre [guide de contribution](CONTRIBUTING.md)
+pour plus d'informations.
 
 ## 📜 License
 
