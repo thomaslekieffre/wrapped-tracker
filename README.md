@@ -9,7 +9,6 @@ suivre et visualiser leurs données personnelles de manière engageante et inter
 - 📱 Interface responsive et moderne
 - 🔒 Authentification sécurisée
 - 📊 Visualisations interactives
-- 💾 Mode hors-ligne
 - 🎨 Thèmes personnalisables
 
 ## 🛠 Stack Technique
